@@ -48,7 +48,7 @@ namespace SoftServe_Project1_Suffix_Array
             this.text = this.text.Remove(this.text.Length - 1);
         }
 
-        //<summary> sort the substring until lexicographic order
+        ///<summary> sort the substring until lexicographic order </summary>  
         private void createArray(ref int indexofSpecialSymbol)
         {
             List<int> count = new List<int>(Math.Max(ALPHABET, this.text.Length));
@@ -107,8 +107,8 @@ namespace SoftServe_Project1_Suffix_Array
             }
         }
 
-        //<summary> for each character we count how many times it appears in the string, and then use this information to create the suffixArray. 
-        // After that we go through the suffixArary and construct classes by comparing adjacent characters and return the number of classes.
+        ///<summary> for each character we count how many times it appears in the string, and then use this information to create the suffixArray. 
+        /// After that we go through the suffixArary and construct classes by comparing adjacent characters and return the number of classes. </summary>  
         private int suffixHelper(ref List<int> count)
         {
             for (int i = 0; i < this.text.Length; i++)
@@ -145,9 +145,9 @@ namespace SoftServe_Project1_Suffix_Array
             this.classes = new List<int>(newClasses);
             newClasses = new List<int>(copy);
         }
-        
-            //<summary> finds the left most occurrence in the suffix array comparing the value with char at mid + offset as
-            // the offset represents which character from the searched word is being compared 
+
+        ///<summary> finds the left most occurrence in the suffix array comparing the value with char at mid + offset as
+        /// the offset represents which character from the searched word is being compared </summary>  
         private int leftmostBinarySearch(int left, int right, char value, int offset)
         {
             int result = -1;
@@ -171,8 +171,8 @@ namespace SoftServe_Project1_Suffix_Array
             return result;
         }
 
-        //<summary> finds the right most occurrence in the suffix array comparing the value with char at mid + offset as
-        // the offset represents which character from the searched word is being compared 
+        ///<summary> finds the right most occurrence in the suffix array comparing the value with char at mid + offset as
+        /// the offset represents which character from the searched word is being compared </summary>  
         private int rightmostBinarySearch(int left, int right, char value, int offset)
         {
             int result = -1;
@@ -196,7 +196,7 @@ namespace SoftServe_Project1_Suffix_Array
             return result;
         }
 
-        //<summary> finds the range of starting indexes in the text of the first letter of the searched word
+        ///<summary> finds the range of starting indexes in the text of the first letter of the searched word </summary>  
         private Tuple<int, int> findRange(string searchedWord)
         {
             int left = 0, right = this.suffixArray.Capacity - 1;
@@ -212,7 +212,7 @@ namespace SoftServe_Project1_Suffix_Array
             return new Tuple<int, int>(left, right);
         }
 
-        //<summary> returns the number of  occurrences of the searched word
+        ///<summary> returns the number of  occurrences of the searched word </summary>  
         public int numberOfOccurrences(string searchedWord)
         {
             Tuple<int, int> range = findRange(searchedWord);
@@ -223,7 +223,7 @@ namespace SoftServe_Project1_Suffix_Array
             return range.Item2 - range.Item1 + 1;
         }
 
-        //<summary> prints the starting indexes in the text of the first letter of the searched word
+        ///<summary> prints the starting indexes in the text of the first letter of the searched word </summary>  
         public void printOfOccurrences(string searchedWord)
         {
             Tuple<int, int> range = findRange(searchedWord);
@@ -238,7 +238,7 @@ namespace SoftServe_Project1_Suffix_Array
             }
         }
 
-        //<summary> prints the built suffix array
+        ///<summary> prints the built suffix array </summary>  
         public void printSuffixArray()
         {
             foreach (int i in this.suffixArray)
