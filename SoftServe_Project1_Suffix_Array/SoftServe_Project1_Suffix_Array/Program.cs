@@ -8,10 +8,14 @@ namespace SoftServe_Project1_Suffix_Array
     {
         static void Main(string[] args)
         {
-            SuffixArray arr = new SuffixArray("tree");
-            Console.WriteLine(arr.numberOfOccurrences("tree"));
+            SuffixArray arr = new SuffixArray("hh");
+            Console.WriteLine(arr.numberOfOccurrences("h"));
+            arr.printOfOccurrences("ee");
             arr.printOfOccurrences("h");
-            arr.printSuffixArray();
+
+            arr.Text = "tree";
+            Console.WriteLine(arr.numberOfOccurrences("ee"));
+            arr.printOfOccurrences("ee");
         }
     }
 }

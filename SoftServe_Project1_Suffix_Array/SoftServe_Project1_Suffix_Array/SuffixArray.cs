@@ -154,7 +154,11 @@ namespace SoftServe_Project1_Suffix_Array
             while (left <= right)
             {
                 int mid = left + (right - left) / 2;
-                if (this.text[this.suffixArray[mid] + offset] > value)
+                if (this.suffixArray[mid] + offset > this.text.Length - 1)
+                {
+                    left = mid + 1;
+                }
+                else if (this.text[this.suffixArray[mid] + offset] > value)
                 {
                     right = mid - 1;
                 }
@@ -179,7 +183,11 @@ namespace SoftServe_Project1_Suffix_Array
             while (left <= right)
             {
                 int mid = left + (right - left) / 2;
-                if (this.text[this.suffixArray[mid] + offset] > value)
+                if (this.suffixArray[mid] + offset > this.text.Length - 1)
+                {
+                    right = mid - 1;
+                }
+                else if (this.text[this.suffixArray[mid] + offset] > value)
                 {
                     right = mid - 1;
                 }
@@ -203,8 +211,12 @@ namespace SoftServe_Project1_Suffix_Array
             for (int i = 0; i < searchedWord.Length; i++)
             {
                 left = leftmostBinarySearch(left, right, searchedWord[i], i);
+                if (left == -1)
+                {
+                    return new Tuple<int, int>(-1, -1);
+                }
                 right = rightmostBinarySearch(left, right, searchedWord[i], i);
-                if (left == -1 || right == -1)
+                if (right == -1)
                 {
                     return new Tuple<int, int>(-1, -1);
                 }
@@ -218,7 +230,7 @@ namespace SoftServe_Project1_Suffix_Array
             Tuple<int, int> range = findRange(searchedWord);
             if(range.Item1 == -1)
             {
-                return -1;
+                return 0;
             }
             return range.Item2 - range.Item1 + 1;
         }
