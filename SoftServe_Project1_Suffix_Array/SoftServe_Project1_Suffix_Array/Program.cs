@@ -8,9 +8,9 @@ namespace SoftServe_Project1_Suffix_Array
     {
         static void Main(string[] args)
         {
-            SuffixArray arr = new SuffixArray("Lorem Ipsum is simply dummy text of the printing and typesetting industry. ");
-            Console.WriteLine(arr.numberOfOccurrences("dummy"));
-            arr.printOfOccurrences("dummy");
+            SuffixArray arr = new SuffixArray("tree");
+            Console.WriteLine(arr.numberOfOccurrences("tree"));
+            arr.printOfOccurrences("h");
             arr.printSuffixArray();
         }
     }

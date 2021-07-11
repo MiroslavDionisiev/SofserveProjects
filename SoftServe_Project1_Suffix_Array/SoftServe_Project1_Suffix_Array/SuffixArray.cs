@@ -199,7 +199,7 @@ namespace SoftServe_Project1_Suffix_Array
         ///<summary> finds the range of starting indexes in the text of the first letter of the searched word </summary>  
         private Tuple<int, int> findRange(string searchedWord)
         {
-            int left = 0, right = this.suffixArray.Capacity - 1;
+            int left = 0, right = this.suffixArray.Count - 1;
             for (int i = 0; i < searchedWord.Length; i++)
             {
                 left = leftmostBinarySearch(left, right, searchedWord[i], i);
@@ -250,7 +250,6 @@ namespace SoftServe_Project1_Suffix_Array
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("////////////////////////////////////////");
         }
     }
 }
