@@ -97,7 +97,7 @@ namespace SoftServe_Project1_Suffix_Array
                 {
                     Tuple<int, int> cur = new Tuple<int, int>(this.classes[this.suffixArray[i]], this.classes[(this.suffixArray[i] + (1 << h)) % this.text.Length]);
                     Tuple<int, int> prev = new Tuple<int, int>(this.classes[this.suffixArray[i - 1]], this.classes[(this.suffixArray[i - 1] + (1 << h)) % this.text.Length]);
-                    if (cur != prev)
+                    if (cur.Item1 != prev.Item1 || cur.Item2 != prev.Item2)
                     {
                         classesCurrent++;
                     }
@@ -243,8 +243,14 @@ namespace SoftServe_Project1_Suffix_Array
         {
             foreach (int i in this.suffixArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + " - ");
+                for(int j = i; j < this.text.Length; j++)
+                {
+                    Console.Write(this.text[j]);
+                }
+                Console.WriteLine();
             }
+            Console.WriteLine("////////////////////////////////////////");
         }
     }
 }
