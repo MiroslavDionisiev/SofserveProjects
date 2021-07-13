@@ -16,6 +16,10 @@ namespace SoftServe_Project1_Suffix_Array
             arr.Text = "tree";
             Console.WriteLine(arr.numberOfOccurrences("ee"));
             arr.printOfOccurrences("ee");
+            
+            arr.Text = "ab bf";
+            Console.WriteLine(arr.numberOfOccurrences("b b"));
+            arr.printOfOccurrences("b b");
         }
     }
 }
