@@ -18,6 +18,13 @@ namespace SoftServe_Project1_Suffix_Array
             this.createSuffixArray();
         }
 
+        public SuffixArray(SuffixArray other)
+        {
+            this.text = other.text;
+            this.suffixArray = new List<int>(other.suffixArray);
+            this.classes = new List<int>(other.classes);
+        }
+
         public string Text
         {
             get

@@ -20,6 +20,18 @@ namespace SoftServe_Project1_Suffix_Array
             arr.Text = "ab bf";
             Console.WriteLine(arr.numberOfOccurrences("b b"));
             arr.printOfOccurrences("b b");
+
+            SuffixArray arr2 = new SuffixArray(arr);
+
+
+            if (Equals(arr, arr2))
+            {
+                Console.WriteLine("Equal");
+            }
+            else
+            {
+                Console.WriteLine("Not equal");
+            }
         }
     }
 }
