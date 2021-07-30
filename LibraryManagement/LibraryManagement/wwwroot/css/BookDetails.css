@@ -1,0 +1,28 @@
+﻿ul{
+    list-style-type: none;
+}
+
+li.bookInfo{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin-top: 3px;
+}
+
+li.bookInfo * {
+    background-color: #d9d7d7;
+    padding: 3px;
+}
+
+li.bookInfo div:first-child {
+    margin-right: 3px;
+    width: 30%;
+}
+
+li.bookInfo div:last-child {
+    width: 70%;
+}
+
+.btn-menu a{
+    margin-right: 10px;
+}

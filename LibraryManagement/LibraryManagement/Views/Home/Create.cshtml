@@ -1,0 +1,71 @@
+﻿@model BookCreateViewModel
+
+@{
+    ViewBag.Title = "Create book";
+}
+
+<form asp-controller="home" asp-action="create" method="post">
+    <div>
+        <label>Title:</label>
+        <div>
+            <input asp-for="@Model.Name." placeholder="Title" />
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Author:</label>
+        <div>
+            <input asp-for="@Model.Author" placeholder="Author" />
+            <span asp-validation-for="@Model.Author" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label asp-for="@Model.Genre">Genre</label>
+        <div>
+            <select asp-for="@Model.Genre" asp-items="Html.GetEnumSelectList<Genres>()">
+                <option value="">Please Select</option>
+            </select>
+            <span asp-validation-for="@Model.Genre" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label asp-for="@Model.Language">Language</label>
+        <div>
+            <select asp-for="@Model.Language" asp-items="Html.GetEnumSelectList<Languages>()">
+                <option value="">Please Select</option>
+            </select>
+            <span asp-validation-for="@Model.Language" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Description of the book:</label>
+        <div>
+            <input asp-for="@Model.Description" placeholder="Book description" />
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Published on:</label>
+        <div>
+            <input asp-for="@Model.Published" placeholder="Published" />
+            <span asp-validation-for="@Model.Published" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Overall copies:</label>
+        <div>
+            <input asp-for="@Model.Copies" placeholder="Copies" />
+            <span asp-validation-for="@Model.Copies" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger">
+
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</form>

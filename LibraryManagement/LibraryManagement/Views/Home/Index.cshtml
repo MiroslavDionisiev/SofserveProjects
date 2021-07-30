@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Book List";
+}
+
+@section Stylesheets {
+    <link href="~/css/BookList.css" rel="stylesheet" />
+}
+
+<div>
+    <ul class="legend colorOdd">
+        <li>Id</li>
+        <li>Title</li>
+        <li>Author</li>
+        <li>Genre</li>
+        <li>Free / Copies</li>
+        <li>Details</li>
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+        {
+            <li>Edit</li>
+            <li>Transfer book</li>
+            <li>Remove</li>
+         }
+    </ul>
+</div>
+
+@{int index = 0; }
+@foreach (var book in Model)
+{
+    @if (@index % 2 == 0)
+    {
+        <div>
+            <ul class="bookData colorEven">
+                <li>@book.Id</li>
+                <li>@book.Name</li>
+                <li>@book.Author</li>
+                <li>@book.Genre.ToString()</li>
+                <li>@book.FreeCopies/@book.Copies</li>
+                <li><a asp-controller="home" asp-action="details" asp-route-id="@book.Id">View</a></li>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <li><a asp-controller="home" asp-action="edit" asp-route-id="@book.Id">Edit</a></li>
+                    <li><a asp-controller="home" asp-action="transfer" asp-route-id="@book.Id">Transfer</a></li>
+                    <li><a asp-controller="home" asp-action="delete" asp-route-id="@book.Id">Remove</a></li>
+                }
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div>
+            <ul class="bookData colorOdd">
+                <li>@book.Id</li>
+                <li>@book.Name</li>
+                <li>@book.Author</li>
+                <li>@book.Genre.ToString()</li>
+                <li>@book.FreeCopies/@book.Copies</li>
+                <li><a asp-controller="home" asp-action="details" asp-route-id="@book.Id">View</a></li>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <li><a asp-controller="home" asp-action="edit" asp-route-id="@book.Id">Edit</a></li>
+                    <li><a asp-controller="home" asp-action="transfer" asp-route-id="@book.Id">Transfer</a></li>
+                    <li><a asp-controller="home" asp-action="delete" asp-route-id="@book.Id">Remove</a></li>
+                }
+            </ul>
+        </div>
+    }
+    index++;
+}

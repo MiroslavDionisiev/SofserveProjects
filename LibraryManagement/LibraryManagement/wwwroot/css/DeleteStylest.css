@@ -1,0 +1,16 @@
+﻿.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.decision{
+    width: auto;
+    position: absolute;
+    border: 2px solid darkgrey;
+    padding: 20px;
+    border-radius: 30px;
+    background-color:lightgray;
+    font-weight: bold;
+}

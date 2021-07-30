@@ -1,0 +1,64 @@
+﻿.legend {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding: 0px 5px;
+    border: 1px solid;
+    border-color: darkgrey;
+    width: 90%;
+}
+
+ul.legend > * {
+    display: flex;
+    flex-direction: row;
+    word-break: normal;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: 5px;
+    border-right: 2px solid;
+    border-color: darkgray;
+    width: 13%;
+}
+
+ul.legend *:last-child {
+    border: none;
+}
+
+.bookData {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid;
+    border-color: darkgrey;
+    width: 90%;
+}
+
+.colorEven {
+    background-color: #ededed;
+}
+
+.colorOdd {
+    background-color: #d9d7d7;
+}
+
+ul.bookData > * {
+    display: flex;
+    flex-direction: row;
+    word-break: normal;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-right: 2px solid;
+    border-color: darkgray;
+    width: 13%;
+}
+
+ul.bookData *:last-child {
+    border: none;
+}

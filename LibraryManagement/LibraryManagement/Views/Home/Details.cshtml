@@ -1,0 +1,58 @@
+﻿@model HomeDetailsViewModel
+
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+@section Stylesheets {
+    <link href="~/css/BookDetails.css" rel="stylesheet" />
+}
+
+<div>
+    <ul>
+        <li class="bookInfo">
+            <div>Id:</div>
+            <div>@Model.Book.Id</div>
+        </li>
+        <li class="bookInfo">
+            <div>Title:</div>
+            <div>@Model.Book.Name</div>
+        </li>
+        <li class="bookInfo">
+            <div>Author:</div>
+            <div>@Model.Book.Author</div>
+        </li>
+        <li class="bookInfo">
+            <div>Genre:</div>
+            <div>@Model.Book.Genre.ToString()</div>
+        </li>
+        <li class="bookInfo">
+            <div>Language:</div>
+            <div>@Model.Book.Language.ToString()</div>
+        </li>
+        <li class="bookInfo">
+            <div>Age of publishing:</div>
+            <div>@Model.Book.Published</div>
+        </li>
+        <li class="bookInfo">
+            <div>Description:</div>
+            <div>@Model.Book.Description</div>
+        </li>
+        <li class="bookInfo">
+            <div>Free Copies:</div>
+            <div>@Model.Book.FreeCopies</div>
+        </li>
+        <li class="bookInfo">
+            <div>Copies:</div>
+            <div>@Model.Book.Copies</div>
+        </li>
+    </ul>
+    <div class="btn-menu">
+        <a asp-controller="home" asp-action="index">Back</a>
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+        {
+            <a asp-controller="home" asp-action="edit" asp-route-id="@Model.Book.Id">Edit</a>
+            <a asp-controller="home" asp-action="delete" asp-route-id="@Model.Book.Id">Delete</a>
+        }
+    </div>
+</div>
