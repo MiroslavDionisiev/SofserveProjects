@@ -7,7 +7,9 @@ namespace LibraryManagement.Models
 {
     public interface IBorrowedBooksRepository
     {
-        BorrowedBooks GetBorrowedBooks(int Id);
+        IEnumerable<BorrowedBooks> GetBorrowedBooks(string Id);
+        BorrowedBooks GetBorrowedBook(int BorrowedId);
+        BorrowedBooks UserBorrowedBooks(int Id);
         BorrowedBooks Add(BorrowedBooks book);
         BorrowedBooks Update(BorrowedBooks bookChange);
         BorrowedBooks Delete(int Id);

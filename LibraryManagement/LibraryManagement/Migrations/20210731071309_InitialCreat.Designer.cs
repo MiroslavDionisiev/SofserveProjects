@@ -4,14 +4,16 @@ using EmployeeManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210731071309_InitialCreat")]
+    partial class InitialCreat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,9 @@ namespace LibraryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7112c772-e971-4da8-b430-cfea624ac06e",
+                            Id = "0256b097-f4b3-440d-9745-b3e88419a38c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3f2e05ee-c65c-4761-8325-7b287e08d859",
+                            ConcurrencyStamp = "6220120b-ceec-44d0-96ef-f7cd3edafb52",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -102,7 +104,7 @@ namespace LibraryManagement.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJs6CyjEk+BdBP78uVxCnB7lBr0GsJua0/65sRJb/hXak6yk0NOfkPH6ik7qMDPiVQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENAbcWIqAEN0qCk4XEZsq7pE9KA4M6u5GZuX5pzwGBCpIrmBqjIgjxS/qGsR+WcTuA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -159,8 +161,8 @@ namespace LibraryManagement.Migrations
                             Copies = 4,
                             Description = "Description1",
                             FreeCopies = 1,
-                            Genre = 0,
-                            Language = 1,
+                            Genre = 1,
+                            Language = 2,
                             Name = "Name1",
                             Published = 2000
                         });
@@ -189,29 +191,6 @@ namespace LibraryManagement.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("BorrowedBooks");
-                });
-
-            modelBuilder.Entity("LibraryManagement.Models.DeadlineRequest", b =>
-                {
-                    b.Property<int>("RequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BorrowedId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("RequestStatus")
-                        .HasColumnType("int");
-
-                    b.HasKey("RequestId");
-
-                    b.HasIndex("BorrowedId");
-
-                    b.ToTable("DeadlineRequests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -243,15 +222,15 @@ namespace LibraryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6104ffbe-ded2-4990-9411-bf33ce5d81ab",
-                            ConcurrencyStamp = "b0ed9343-1d40-43ad-a210-4e832fb56dfe",
+                            Id = "7d8356b6-d169-4160-b4f4-f9bd8c961cee",
+                            ConcurrencyStamp = "0be1ff8a-cca9-45ba-883c-e7a11a1b5df1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "66573a59-f718-4a2e-830a-1c0e0a821f42",
-                            ConcurrencyStamp = "2e05213e-6584-463d-8789-892970c84bb4",
+                            Id = "c359ddcb-6c5f-4fd8-b9e6-32e6cd1f6065",
+                            ConcurrencyStamp = "dd19f97c-31d1-45f8-bb47-05e0874154c2",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
@@ -344,8 +323,8 @@ namespace LibraryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "7112c772-e971-4da8-b430-cfea624ac06e",
-                            RoleId = "6104ffbe-ded2-4990-9411-bf33ce5d81ab"
+                            UserId = "0256b097-f4b3-440d-9745-b3e88419a38c",
+                            RoleId = "7d8356b6-d169-4160-b4f4-f9bd8c961cee"
                         });
                 });
 
@@ -383,17 +362,6 @@ namespace LibraryManagement.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("LibraryManagement.Models.DeadlineRequest", b =>
-                {
-                    b.HasOne("LibraryManagement.Models.BorrowedBooks", "Book")
-                        .WithMany()
-                        .HasForeignKey("BorrowedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

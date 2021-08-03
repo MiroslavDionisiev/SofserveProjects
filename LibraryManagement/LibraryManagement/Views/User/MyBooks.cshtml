@@ -1,0 +1,89 @@
+﻿@model IEnumerable<BorrowedBooks>
+
+@{
+    ViewBag.Title = "My books";
+
+}
+
+@section Stylesheets {
+    <link href="~/css/BookList.css" rel="stylesheet" />
+}
+
+<h1>My books</h1>
+
+<div>
+    <ul class="legend colorOdd">
+        <li>Title</li>
+        <li>Author</li>
+        <li>Return Date</li>
+        <li>View</li>
+        <li>Renew deadline</li>
+    </ul>
+</div>
+
+@{int index = 0; }
+@foreach (BorrowedBooks book in Model)
+{
+    DateTime currentDate = DateTime.Now;
+    int status = DateTime.Compare(currentDate, book.Date);
+
+    @if (@index % 2 == 0)
+    {
+        <div>
+            @if (status > 0)
+            {
+                <ul class="bookData colorDeadline">
+                    <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
+                    <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                    <li>@book.Date.ToShortDateString()</li>
+                    <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                </ul>
+            }
+            else
+            {
+                <form asp-controller="User" asp-action="MyBooks" method="post">
+                    <input hidden asp-for="@Model.ToList()[index].BorrowedId" />
+                    <input hidden asp-for="@Model.ToList()[index].BookId" />
+                    <input hidden asp-for="@Model.ToList()[index].UsersId" />
+                    <ul class="bookData colorEven">
+                        <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
+                        <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                        <li>@book.Date.ToShortDateString()</li>
+                        <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                        <li><button type="submit" class="btn btn-primary">Renew</button></li>
+                    </ul>
+                </form>
+            }
+        </div>
+    }
+    else
+    {
+        <div>
+            @if (status > 0)
+            {
+                <ul class="bookData colorDeadline">
+                    <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
+                    <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                    <li>@book.Date.ToShortDateString()</li>
+                    <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                </ul>
+            }
+            else
+            {
+                <form asp-controller="User" asp-action="MyBooks" method="post">
+                    <input hidden asp-for="@Model.ToList()[index].BorrowedId" />
+                    <input hidden asp-for="@Model.ToList()[index].BookId" />
+                    <input hidden asp-for="@Model.ToList()[index].UsersId" />
+                    <ul class="bookData colorOdd">
+                        <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
+                        <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                        <li>@book.Date.ToShortDateString()</li>
+                        <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                        <li><button type="submit" class="btn btn-primary">Renew</button></li>
+                    </ul>
+                </form>
+            }
+        </div>
+    }
+    index++;
+}

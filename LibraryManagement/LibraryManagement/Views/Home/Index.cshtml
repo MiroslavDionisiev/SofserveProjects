@@ -36,12 +36,12 @@
                 <li>@book.Author</li>
                 <li>@book.Genre.ToString()</li>
                 <li>@book.FreeCopies/@book.Copies</li>
-                <li><a asp-controller="home" asp-action="details" asp-route-id="@book.Id">View</a></li>
+                <li><a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id">View</a></li>
                 @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    <li><a asp-controller="home" asp-action="edit" asp-route-id="@book.Id">Edit</a></li>
-                    <li><a asp-controller="home" asp-action="transfer" asp-route-id="@book.Id">Transfer</a></li>
-                    <li><a asp-controller="home" asp-action="delete" asp-route-id="@book.Id">Remove</a></li>
+                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@book.Id">Edit</a></li>
+                    <li><a asp-controller="Home" asp-action="Transfer" asp-route-id="@book.Id">Transfer</a></li>
+                    <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@book.Id">Remove</a></li>
                 }
             </ul>
         </div>
@@ -55,12 +55,12 @@
                 <li>@book.Author</li>
                 <li>@book.Genre.ToString()</li>
                 <li>@book.FreeCopies/@book.Copies</li>
-                <li><a asp-controller="home" asp-action="details" asp-route-id="@book.Id">View</a></li>
+                <li><a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id">View</a></li>
                 @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    <li><a asp-controller="home" asp-action="edit" asp-route-id="@book.Id">Edit</a></li>
-                    <li><a asp-controller="home" asp-action="transfer" asp-route-id="@book.Id">Transfer</a></li>
-                    <li><a asp-controller="home" asp-action="delete" asp-route-id="@book.Id">Remove</a></li>
+                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@book.Id">Edit</a></li>
+                    <li><a asp-controller="Home" asp-action="Transfer" asp-route-id="@book.Id">Transfer</a></li>
+                    <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@book.Id">Remove</a></li>
                 }
             </ul>
         </div>

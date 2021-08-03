@@ -36,6 +36,7 @@ namespace LibraryManagement
             services.AddControllersWithViews();
             services.AddScoped<IBookRepository, SQLBookRepository>();
             services.AddScoped<IBorrowedBooksRepository, SQLBorrowedBooksRepository>();
+            services.AddScoped<IDeadlineRequestRepository, SQLDeadlineRequestRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

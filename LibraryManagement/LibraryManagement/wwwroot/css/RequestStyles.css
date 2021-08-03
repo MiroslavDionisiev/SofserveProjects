@@ -1,0 +1,40 @@
+﻿.request-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 3px solid;
+    border-color: darkgray;
+    background-color: #ededed;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.request-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 3px solid;
+    border-color: darkgray;
+    width: 70%;
+}
+
+label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.request-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    width: 30%;
+}

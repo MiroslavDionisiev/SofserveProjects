@@ -4,7 +4,7 @@
     ViewBag.Title = "Transfer book";
 }
 
-<form asp-controller="home" asp-action="transfer" method="post">
+<form asp-controller="Home" asp-action="Transfer" method="post">
     <div>
         <label>Id:</label>
         <div>
@@ -18,7 +18,7 @@
         </div>
         <label>Last Name:</label>
         <div>
-            <input asp-for="@Model.LastName." placeholder="FirstName" />
+            <input asp-for="@Model.LastName." placeholder="LastName" />
             <span asp-validation-for="@Model.LastName" class="text-danger"></span>
         </div>
     </div>
@@ -30,7 +30,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Transfer</button>
         </div>
     </div>
 </form>

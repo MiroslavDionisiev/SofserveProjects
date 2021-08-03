@@ -7,7 +7,6 @@ namespace LibraryManagement.Models
 {
     public enum Languages
     {
-        none,
         English,
         Bulgarian
     }

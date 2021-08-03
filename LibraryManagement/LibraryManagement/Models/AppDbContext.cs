@@ -19,6 +19,7 @@ namespace EmployeeManagement.Models
 
         public DbSet<Book> Books { get; set; }
         public DbSet<BorrowedBooks> BorrowedBooks { get; set; }
+        public DbSet<DeadlineRequest> DeadlineRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

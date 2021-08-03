@@ -43,11 +43,29 @@ namespace EmployeeManagement.Models
                    admin, member
                 );
 
+            var hasher = new PasswordHasher<ApplicationUser>();
+            ApplicationUser user = new ApplicationUser
+            {
+                FirstName = "Admin",
+                LastName = "Admin",
+                UserName = "admin@email.com",
+                NormalizedUserName = "ADMIN@EMAIL.COM",
+                Email = "admin@email.com",
+                NormalizedEmail = "ADMIN@EMAIL.COM",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "123Aa@"),
+                SecurityStamp = string.Empty
+            };
+
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                user
+                );
+
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
                    new IdentityUserRole<string>
                    {
                        RoleId = admin.Id,
-                       UserId = "a93e1c24-46c2-4219-ae74-9c0dc009316e"
+                       UserId = user.Id
                    }
                 );
         }

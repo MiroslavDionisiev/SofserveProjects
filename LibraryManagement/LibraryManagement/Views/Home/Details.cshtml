@@ -48,11 +48,11 @@
         </li>
     </ul>
     <div class="btn-menu">
-        <a asp-controller="home" asp-action="index">Back</a>
+        <a asp-controller="Home" asp-action="Index">Back</a>
         @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
         {
-            <a asp-controller="home" asp-action="edit" asp-route-id="@Model.Book.Id">Edit</a>
-            <a asp-controller="home" asp-action="delete" asp-route-id="@Model.Book.Id">Delete</a>
+            <a asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Book.Id">Edit</a>
+            <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Book.Id">Delete</a>
         }
     </div>
 </div>

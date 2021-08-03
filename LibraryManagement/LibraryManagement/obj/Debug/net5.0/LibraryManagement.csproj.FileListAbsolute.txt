@@ -385,7 +385,6 @@ E:\VC2019 projects\LibraryManagement\LibraryManagement\bin\Debug\net5.0\Microsof
 E:\VC2019 projects\LibraryManagement\LibraryManagement\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 E:\VC2019 projects\LibraryManagement\LibraryManagement\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 E:\VC2019 projects\LibraryManagement\LibraryManagement\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
-E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\LibraryManagement.csprojAssemblyReference.cache
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Home\Create.cshtml.g.cs
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Home\Edit.cshtml.g.cs
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Shared\PageNotFound.cshtml.g.cs
@@ -393,3 +392,7 @@ E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Vi
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Home\Delete.cshtml.g.cs
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Home\Transfer.cshtml.g.cs
+E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\User\MyBooks.cshtml.g.cs
+E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\LibraryManagement.csprojAssemblyReference.cache
+E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\User\RequestSent.cshtml.g.cs
+E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Home\RequestHandler.cshtml.g.cs

@@ -47,6 +47,10 @@ ul.legend *:last-child {
     background-color: #d9d7d7;
 }
 
+.colorDeadline{
+    background-color: lightcoral;
+}
+
 ul.bookData > * {
     display: flex;
     flex-direction: row;
@@ -61,4 +65,25 @@ ul.bookData > * {
 
 ul.bookData *:last-child {
     border: none;
+}
+
+@media only screen and (min-width: 800px)
+{
+    ul.legend > * {
+        font-size: 1.1vw;
+    }
+
+    ul.bookData > * {
+        font-size: 1.1vw;
+    }
+}
+
+@media only screen and (max-width: 799px) {
+    ul.legend > * {
+        font-size: 1.8vw;
+    }
+
+    ul.bookData > * {
+        font-size: 1.8vw;
+    }
 }

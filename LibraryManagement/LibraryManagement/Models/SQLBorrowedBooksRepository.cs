@@ -32,9 +32,14 @@ namespace EmployeeManagement.Models
             return book;
         }
 
-        public BorrowedBooks GetBorrowedBooks(int Id)
+        public BorrowedBooks GetBorrowedBook(int BorrowedId)
         {
-            return context.BorrowedBooks.Find(Id);
+            return context.BorrowedBooks.Find(BorrowedId);
+        }
+
+        public IEnumerable<BorrowedBooks> GetBorrowedBooks(string Id)
+        {
+            return context.BorrowedBooks.ToList().Where(book => book.UsersId == Id);
         }
 
         public BorrowedBooks Update(BorrowedBooks bookChange)
@@ -43,6 +48,11 @@ namespace EmployeeManagement.Models
             book.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
             return bookChange;
+        }
+
+        public BorrowedBooks UserBorrowedBooks(int Id)
+        {
+            return context.BorrowedBooks.Find(Id);
         }
     }
 }

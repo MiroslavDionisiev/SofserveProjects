@@ -17,12 +17,14 @@ namespace LibraryManagement.Controllers
     {
         private readonly IBookRepository _bookRepository;
         private readonly IBorrowedBooksRepository _borrowedBooksRepository;
+        private readonly IDeadlineRequestRepository _deadlineRequestRepository;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public HomeController(IBookRepository bookRepository, IBorrowedBooksRepository _borrowedBooksRepository, UserManager<ApplicationUser> userManager)
+        public HomeController(IBookRepository bookRepository, IBorrowedBooksRepository _borrowedBooksRepository, IDeadlineRequestRepository _deadlineRequestRepository, UserManager<ApplicationUser> userManager)
         {
             this._bookRepository = bookRepository;
             this._borrowedBooksRepository = _borrowedBooksRepository;
+            this._deadlineRequestRepository = _deadlineRequestRepository;
             this.userManager = userManager;
         }
 
@@ -182,7 +184,7 @@ namespace LibraryManagement.Controllers
 
                     BorrowedBooks borrowedBook = new BorrowedBooks
                     {
-                        UserId = transfer.UserId,
+                        UsersId = transfer.UserId,
                         BookId = id,
                         Date = DateTime.Now.AddDays(30)
                     };
@@ -197,6 +199,31 @@ namespace LibraryManagement.Controllers
                 
             }
             return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult RequestHandler(int id)
+        {
+            return View(this._deadlineRequestRepository.GetPendingRequest());
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult RequestHandler(IEnumerable<DeadlineRequest> requests)
+        {
+            foreach(DeadlineRequest request in requests)
+            {
+                if(request.RequestStatus.ToString() == "Approved" && request.IsDeleted == false)
+                {
+                    BorrowedBooks book = this._borrowedBooksRepository.GetBorrowedBook(request.BorrowedId);
+                    book.Date = book.Date.AddDays(30);
+                    BorrowedBooks newBook = this._borrowedBooksRepository.Update(book);
+                }
+                request.IsDeleted = true;
+                this._deadlineRequestRepository.Update(request);
+            }
+            return RedirectToAction("index");
         }
     }
 }

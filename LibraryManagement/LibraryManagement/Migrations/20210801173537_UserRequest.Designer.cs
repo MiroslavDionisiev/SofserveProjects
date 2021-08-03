@@ -4,14 +4,16 @@ using EmployeeManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210801173537_UserRequest")]
+    partial class UserRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,9 @@ namespace LibraryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7112c772-e971-4da8-b430-cfea624ac06e",
+                            Id = "841cb2c8-9771-4e3b-bfce-485e9e834a71",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3f2e05ee-c65c-4761-8325-7b287e08d859",
+                            ConcurrencyStamp = "7ad70284-cf19-4a50-93b8-bb39e3b0a6f4",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -102,7 +104,7 @@ namespace LibraryManagement.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJs6CyjEk+BdBP78uVxCnB7lBr0GsJua0/65sRJb/hXak6yk0NOfkPH6ik7qMDPiVQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENLi4NvFKrEMMr7Ng/oR2mbvnM5HrVBI8Q+w7Of8lzMo626evxgFZG4znMK3L/MDKw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -201,9 +203,6 @@ namespace LibraryManagement.Migrations
                     b.Property<int>("BorrowedId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<int>("RequestStatus")
                         .HasColumnType("int");
 
@@ -243,15 +242,15 @@ namespace LibraryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6104ffbe-ded2-4990-9411-bf33ce5d81ab",
-                            ConcurrencyStamp = "b0ed9343-1d40-43ad-a210-4e832fb56dfe",
+                            Id = "0d28f0db-3727-4f9e-9d50-02637135fd68",
+                            ConcurrencyStamp = "dcca12ad-528c-4875-90bd-005cd31080b8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "66573a59-f718-4a2e-830a-1c0e0a821f42",
-                            ConcurrencyStamp = "2e05213e-6584-463d-8789-892970c84bb4",
+                            Id = "80faa66b-c383-49c2-b0b0-fde62e668e3c",
+                            ConcurrencyStamp = "be08d710-e5b0-4be6-bf5c-d4579eb65aba",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
@@ -344,8 +343,8 @@ namespace LibraryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "7112c772-e971-4da8-b430-cfea624ac06e",
-                            RoleId = "6104ffbe-ded2-4990-9411-bf33ce5d81ab"
+                            UserId = "841cb2c8-9771-4e3b-bfce-485e9e834a71",
+                            RoleId = "0d28f0db-3727-4f9e-9d50-02637135fd68"
                         });
                 });
 

@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Models
 {
-    public enum Genres
+    public enum Status
     {
-        Fiction,
-        Horror
+        Pending,
+        Approved,
+        Denied
     }
 }

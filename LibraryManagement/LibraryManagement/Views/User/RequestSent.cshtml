@@ -1,0 +1,14 @@
+﻿@model bool
+@{
+    ViewBag.Title = "Request sent";
+
+}
+
+@if (@Model == true)
+{
+    <h1>Your request is successfully sent</h1>
+}
+else
+{
+    <h1>You have already sent a request for this book</h1>
+}

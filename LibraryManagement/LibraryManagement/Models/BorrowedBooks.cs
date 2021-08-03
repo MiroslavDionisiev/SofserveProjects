@@ -16,8 +16,8 @@ namespace LibraryManagement.Models
         [ForeignKey("BookId")]
         public Book Book { get; set; }
 
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
+        public string UsersId { get; set; }
+        [ForeignKey("UsersId")]
         public ApplicationUser User { get; set; }
         public DateTime Date { get; set; }
     }
