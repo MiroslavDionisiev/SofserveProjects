@@ -33,23 +33,24 @@
             @if (status > 0)
             {
                 <ul class="bookData colorDeadline">
-                    <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
-                    <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                    <li>@_bookRepository.GetBook(book.BookId).Name</li>
+                    <li>@_bookRepository.GetBook(book.BookId).Author</li>
                     <li>@book.Date.ToShortDateString()</li>
-                    <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                    <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BookId).Id">View</a></li>
                 </ul>
             }
             else
             {
                 <form asp-controller="User" asp-action="MyBooks" method="post">
-                    <input hidden asp-for="@Model.ToList()[index].BorrowedId" />
+                    @*<input hidden asp-for="@Model.ToList()[index].BorrowedId" />
                     <input hidden asp-for="@Model.ToList()[index].BookId" />
-                    <input hidden asp-for="@Model.ToList()[index].UsersId" />
+                    <input hidden asp-for="@Model.ToList()[index].UsersId" />*@
+                    <input type="hidden" value="@book.BorrowedId" name="borrowedId" />
                     <ul class="bookData colorEven">
-                        <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
-                        <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                        <li>@_bookRepository.GetBook(book.BookId).Name</li>
+                        <li>@_bookRepository.GetBook(book.BookId).Author</li>
                         <li>@book.Date.ToShortDateString()</li>
-                        <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                        <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BookId).Id">View</a></li>
                         <li><button type="submit" class="btn btn-primary">Renew</button></li>
                     </ul>
                 </form>
@@ -62,23 +63,24 @@
             @if (status > 0)
             {
                 <ul class="bookData colorDeadline">
-                    <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
-                    <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                    <li>@_bookRepository.GetBook(book.BookId).Name</li>
+                    <li>@_bookRepository.GetBook(book.BookId).Author</li>
                     <li>@book.Date.ToShortDateString()</li>
-                    <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                    <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BookId).Id">View</a></li>
                 </ul>
             }
             else
             {
                 <form asp-controller="User" asp-action="MyBooks" method="post">
-                    <input hidden asp-for="@Model.ToList()[index].BorrowedId" />
+                    @*<input hidden asp-for="@Model.ToList()[index].BorrowedId" />
                     <input hidden asp-for="@Model.ToList()[index].BookId" />
-                    <input hidden asp-for="@Model.ToList()[index].UsersId" />
+                    <input hidden asp-for="@Model.ToList()[index].UsersId" />*@
+                    <input type="hidden" value="@book.BorrowedId" name="borrowedId" />
                     <ul class="bookData colorOdd">
-                        <li>@_bookRepository.GetBook(book.BorrowedId).Name</li>
-                        <li>@_bookRepository.GetBook(book.BorrowedId).Author</li>
+                        <li>@_bookRepository.GetBook(book.BookId).Name</li>
+                        <li>@_bookRepository.GetBook(book.BookId).Author</li>
                         <li>@book.Date.ToShortDateString()</li>
-                        <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BorrowedId).Id">View</a></li>
+                        <li><a asp-controller="Home" asp-action="Details" asp-route-id="@_bookRepository.GetBook(book.BookId).Id">View</a></li>
                         <li><button type="submit" class="btn btn-primary">Renew</button></li>
                     </ul>
                 </form>

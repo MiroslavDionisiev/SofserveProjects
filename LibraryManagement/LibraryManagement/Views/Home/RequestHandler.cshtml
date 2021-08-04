@@ -17,15 +17,16 @@
         <input hidden asp-for="@Model.ToList()[index].RequestId" />
         <input hidden asp-for="@Model.ToList()[index].BorrowedId" />
         <input hidden asp-for="@Model.ToList()[index].IsDeleted" />
+        int bookId = _borrowedBooksRepository.GetBorrowedBook(request.BorrowedId).BookId;
         <div class="request-wrapper">
             <div class="request-data">
                 <div>
                     <label>Book title:</label>
-                    @_bookRepository.GetBook(request.BorrowedId).Name
+                    @_bookRepository.GetBook(@bookId).Name
                 </div>
                 <div>
                     <label>Book author:</label>
-                    @_bookRepository.GetBook(request.BorrowedId).Author
+                    @_bookRepository.GetBook(@bookId).Author
                 </div>
                 <div>
                     <label>Member Id:</label>

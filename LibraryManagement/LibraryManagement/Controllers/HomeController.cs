@@ -28,6 +28,23 @@ namespace LibraryManagement.Controllers
             this.userManager = userManager;
         }
 
+        private async Task<bool> UserValidation(TransferViewModel transfer)
+        {
+            var user = await this.userManager.FindByIdAsync(transfer.UserId);
+            if (user == null)
+            {
+                return false;
+            }
+            var userData = from users in this.userManager.Users
+                           where users.Id == transfer.UserId && users.FirstName == transfer.FirstName && users.LastName == transfer.LastName
+                           select users;
+            if(userData == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -115,10 +132,11 @@ namespace LibraryManagement.Controllers
                         {
                             book.CurrentBook.FreeCopies = 0;
                         }
+                        book.CurrentBook.Copies = book.CurrentBook.FreeCopies + this._borrowedBooksRepository.GetNumberOfBorrowedBooks(book.CurrentBook.Id);
                     }
                     else
                     {
-                        book.CurrentBook.FreeCopies++;
+                        book.CurrentBook.FreeCopies = book.CurrentBook.Copies - this._borrowedBooksRepository.GetNumberOfBorrowedBooks(book.CurrentBook.Id);
                     }
                 }
                 Book newBook = this._bookRepository.Update(book.CurrentBook);
@@ -168,15 +186,13 @@ namespace LibraryManagement.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public IActionResult Transfer(int id, TransferViewModel transfer)
+        public async Task<IActionResult> Transfer(int id, TransferViewModel transfer)
         {
             if (ModelState.IsValid)
             {
-                var user = from users in this.userManager.Users
-                           where users.Id == transfer.UserId && users.FirstName == transfer.FirstName && users.LastName == transfer.LastName
-                           select users;
-
-                if(user != null)
+                bool isUserValid = await this.UserValidation(transfer);
+                
+                if (isUserValid == true)
                 {
                     Book book = this._bookRepository.GetBook(id);
                     book.FreeCopies--;
@@ -186,7 +202,8 @@ namespace LibraryManagement.Controllers
                     {
                         UsersId = transfer.UserId,
                         BookId = id,
-                        Date = DateTime.Now.AddDays(30)
+                        Date = DateTime.Now.AddDays(30),
+                        IsReturned = false
                     };
                     BorrowedBooks newBorrowedBook = this._borrowedBooksRepository.Add(borrowedBook);
 
@@ -195,15 +212,14 @@ namespace LibraryManagement.Controllers
                 else 
                 {
                     return RedirectToAction("transfer");
-                }
-                
+                }  
             }
             return View();
         }
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public IActionResult RequestHandler(int id)
+        public IActionResult RequestHandler()
         {
             return View(this._deadlineRequestRepository.GetPendingRequest());
         }
@@ -224,6 +240,50 @@ namespace LibraryManagement.Controllers
                 this._deadlineRequestRepository.Update(request);
             }
             return RedirectToAction("index");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Return()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Return(BookReturnViewModel bookReturnViewModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                bool isUserValid = await this.UserValidation(new TransferViewModel { UserId = bookReturnViewModel.UserId, FirstName = bookReturnViewModel.FirstName, LastName = bookReturnViewModel.LastName});
+
+                if (isUserValid == true)
+                {
+                    Book book = this._bookRepository.GetBook(bookReturnViewModel.BookId);
+                    if (book == null)
+                    {
+                        return RedirectToAction("return");
+                    }
+                    BorrowedBooks borrowedBook = this._borrowedBooksRepository.GetUserBorrowedBooks(bookReturnViewModel.UserId)
+                        .Where(book => book.BookId == bookReturnViewModel.BookId && book.IsReturned == false).First();
+                    if (borrowedBook == null)
+                    {
+                        return RedirectToAction("return");
+                    }
+                    book.FreeCopies++;
+                    borrowedBook.IsReturned = true;
+                    Book newBook = this._bookRepository.Update(book);
+                    BorrowedBooks newBorrowedBook = this._borrowedBooksRepository.Update(borrowedBook);
+
+                    return RedirectToAction("index");
+                }
+                else
+                {
+                    return RedirectToAction("return");
+                }
+            }
+            return View();
         }
     }
 }

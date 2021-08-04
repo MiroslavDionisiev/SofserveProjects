@@ -20,5 +20,6 @@ namespace LibraryManagement.Models
         [ForeignKey("UsersId")]
         public ApplicationUser User { get; set; }
         public DateTime Date { get; set; }
+        public bool IsReturned { get; set; }
     }
 }

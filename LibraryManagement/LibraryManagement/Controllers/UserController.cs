@@ -24,16 +24,16 @@ namespace LibraryManagement.Controllers
         [HttpGet]
         public IActionResult MyBooks()
         {
-            var book = this._borrowedBooksRepository.GetBorrowedBooks(this.userManager.GetUserId(User));
+            var book = this._borrowedBooksRepository.GetUserBorrowedBooks(this.userManager.GetUserId(User));
             return View(book);
         }
 
         [HttpPost]
-        public IActionResult MyBooks(IEnumerable<BorrowedBooks> book)
+        public IActionResult MyBooks(int borrowedId)
         {
             if (ModelState.IsValid)
             {
-                BorrowedBooks bookRequested = this._borrowedBooksRepository.UserBorrowedBooks(book.ToList()[0].BorrowedId);
+                BorrowedBooks bookRequested = this._borrowedBooksRepository.GetBorrowedBook(borrowedId);
                 if (this._deadlineRequestRepository.IsBookOfUserRequested(bookRequested.BorrowedId) == false)
                 {
                     DeadlineRequest request = new DeadlineRequest

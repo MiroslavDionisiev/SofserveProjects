@@ -396,3 +396,4 @@ E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Vi
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\LibraryManagement.csprojAssemblyReference.cache
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\User\RequestSent.cshtml.g.cs
 E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Home\RequestHandler.cshtml.g.cs
+E:\VC2019 projects\LibraryManagement\LibraryManagement\obj\Debug\net5.0\Razor\Views\Home\Return.cshtml.g.cs
