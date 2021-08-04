@@ -1,8 +1,6 @@
 ﻿@model TransferViewModel
 
-@{ 
-    ViewBag.Title = "Transfer book";
-}
+@{ ViewBag.Title = "Transfer book"; }
 
 <form asp-controller="Home" asp-action="Transfer" method="post">
     <div>
@@ -22,7 +20,6 @@
             <span asp-validation-for="@Model.LastName" class="text-danger"></span>
         </div>
     </div>
-
 
     <div asp-validation-summary="All" class="text-danger">
 

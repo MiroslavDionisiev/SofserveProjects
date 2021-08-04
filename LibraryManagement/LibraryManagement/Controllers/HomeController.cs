@@ -211,7 +211,8 @@ namespace LibraryManagement.Controllers
                 }
                 else 
                 {
-                    return RedirectToAction("transfer");
+                    ModelState.AddModelError("Error", "Wrong personal data inputted");
+                    return View();
                 }  
             }
             return View();
@@ -263,13 +264,15 @@ namespace LibraryManagement.Controllers
                     Book book = this._bookRepository.GetBook(bookReturnViewModel.BookId);
                     if (book == null)
                     {
-                        return RedirectToAction("return");
+                        ModelState.AddModelError("Error", "Wrong book id");
+                        return View();
                     }
                     BorrowedBooks borrowedBook = this._borrowedBooksRepository.GetUserBorrowedBooks(bookReturnViewModel.UserId)
                         .Where(book => book.BookId == bookReturnViewModel.BookId && book.IsReturned == false).First();
                     if (borrowedBook == null)
                     {
-                        return RedirectToAction("return");
+                        ModelState.AddModelError("Error", "Data about borrowed book is not in coherence");
+                        return View();
                     }
                     book.FreeCopies++;
                     borrowedBook.IsReturned = true;
