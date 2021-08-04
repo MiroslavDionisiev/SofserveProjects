@@ -46,7 +46,10 @@ namespace LibraryManagement
             {
                 app.UseDeveloperExceptionPage();
             }
-            // error 404 handler
+            else
+            {
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
