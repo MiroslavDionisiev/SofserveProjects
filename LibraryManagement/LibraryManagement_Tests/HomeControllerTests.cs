@@ -40,9 +40,11 @@ namespace LibraryManagement_Tests
             var result = controller.Details(2);
 
             // Assert
-            var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<Book>(viewResult.ViewData.Model);
-            Assert.Equal(1, model.);
+            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Null(redirectToActionResult.ControllerName);
+            Assert.Equal("Details", redirectToActionResult.ActionName);
+            //var model = Assert.IsAssignableFrom<Book>(viewResult.ViewData.Model);
+            //Assert.Equal(2, model.Id);
         }
 
         private IEnumerable<Book> GetTestBooks()
