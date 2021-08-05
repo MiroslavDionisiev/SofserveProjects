@@ -9,7 +9,6 @@ namespace LibraryManagement.ViewModel
 {
     public class BookCreateViewModel
     {
-        //try
         [Required]
         [MaxLength(100, ErrorMessage = "Title cannot exede 100 characters")]
         public string Name { get; set; }
