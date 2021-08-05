@@ -9,7 +9,9 @@ namespace LibraryManagement.Models
     {
         IEnumerable<DeadlineRequest> GetPendingRequest();
         bool IsBookOfUserRequested(int borrowedId);
+        void RemovePendingRequestOfUserReturnedBook(int BorrowedId);
         DeadlineRequest Add(DeadlineRequest request);
+        public DeadlineRequest Delete(int id);
         DeadlineRequest Update(DeadlineRequest requestCahge);
     }
 }

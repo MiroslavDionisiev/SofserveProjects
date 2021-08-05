@@ -235,6 +235,7 @@ namespace LibraryManagement.Controllers
                     book.FreeCopies++;
                     borrowedBook.IsReturned = true;
                     Book newBook = this._bookRepository.Update(book);
+                    this._deadlineRequestRepository.RemovePendingRequestOfUserReturnedBook(borrowedBook.BorrowedId);
                     BorrowedBooks newBorrowedBook = this._borrowedBooksRepository.Update(borrowedBook);
 
                     return RedirectToAction("Index", "Home");

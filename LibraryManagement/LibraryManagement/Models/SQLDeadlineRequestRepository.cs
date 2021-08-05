@@ -42,6 +42,18 @@ namespace EmployeeManagement.Models
             return context.DeadlineRequests.ToList().Where(request => request.BorrowedId == borrowedId && request.RequestStatus.ToString() == "Pending").Count() > 0;
         }
 
+        public void RemovePendingRequestOfUserReturnedBook(int BorrowedId)
+        {
+            IEnumerable<DeadlineRequest> deadlineRequests = context.DeadlineRequests.ToList()
+                .Where(requst => requst.RequestStatus.ToString() == "Pending" && requst.BorrowedId == BorrowedId);
+            foreach(DeadlineRequest request in deadlineRequests)
+            {
+                request.RequestStatus = Status.Denied;
+                request.IsDeleted = true;
+                this.Update(request);
+            }
+        }
+
         public DeadlineRequest Update(DeadlineRequest requestCahge)
         {
             var request = context.DeadlineRequests.Attach(requestCahge);
