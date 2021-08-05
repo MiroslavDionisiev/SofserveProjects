@@ -226,8 +226,7 @@ namespace LibraryManagement.Controllers
                         ModelState.AddModelError("Error", "Wrong book id");
                         return View();
                     }
-                    BorrowedBooks borrowedBook = this._borrowedBooksRepository.GetUserBorrowedBooks(bookReturnViewModel.UserId)
-                        .Where(book => book.BookId == bookReturnViewModel.BookId && book.IsReturned == false).First();
+                    BorrowedBooks borrowedBook = this._borrowedBooksRepository.GetUserBorrowedBooks(bookReturnViewModel.UserId).ToList().Find(book => book.BookId == bookReturnViewModel.BookId);
                     if (borrowedBook == null)
                     {
                         ModelState.AddModelError("Error", "Data about borrowed book is not in coherence");
