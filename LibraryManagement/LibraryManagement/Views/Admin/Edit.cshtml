@@ -1,0 +1,76 @@
+﻿@model BookEditViewModel
+
+@{
+    ViewBag.Title = "Book edit";
+}
+
+@section Stylesheets {
+    <link href="~/css/EditStyles.css" rel="stylesheet" />
+}
+
+<form asp-controller="Admin" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger">
+    </div>
+    <input hidden asp-for="@Model.CurrentBook.Id" />
+    <input hidden asp-for="@Model.CurrentBook.FreeCopies" />
+    <input hidden asp-for="@Model.OldNumberOfCopies" />
+
+    <div>
+        <label>Title:</label>
+        <div>
+            <input asp-for="@Model.CurrentBook.Name" placeholder="Title" />
+            <span asp-validation-for="@Model.CurrentBook.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Author:</label>
+        <div>
+            <input asp-for="@Model.CurrentBook.Author" placeholder="Author" />
+            <span asp-validation-for="@Model.CurrentBook.Author" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label asp-for="@Model.CurrentBook.Genre">Genre</label>
+        <div>
+            <select asp-for="@Model.CurrentBook.Genre" asp-items="Html.GetEnumSelectList<Genres>()">
+                <option value="">Please Select</option>
+            </select>
+            <span asp-validation-for="@Model.CurrentBook.Genre" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label asp-for="@Model.CurrentBook.Language">Language</label>
+        <div>
+            <select asp-for="@Model.CurrentBook.Language" asp-items="Html.GetEnumSelectList<Languages>()">
+                <option value="">Please Select</option>
+            </select>
+            <span asp-validation-for="@Model.CurrentBook.Language" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Description of the book:</label>
+        <div>
+            <input asp-for="@Model.CurrentBook.Description" placeholder="Book description" />
+            <span asp-validation-for="@Model.CurrentBook.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Published on:</label>
+        <div>
+            <input asp-for="@Model.CurrentBook.Published" placeholder="Published" />
+            <span asp-validation-for="@Model.CurrentBook.Published" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>Overall copies:</label>
+        <div>
+            <input asp-for="@Model.CurrentBook.Copies" placeholder="Copies" />
+            <span asp-validation-for="@Model.CurrentBook.Copies" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="distance">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Cancel</a>
+    </div>
+</form>

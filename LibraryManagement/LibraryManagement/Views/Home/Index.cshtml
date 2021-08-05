@@ -39,9 +39,9 @@
                 <li><a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id">View</a></li>
                 @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@book.Id">Edit</a></li>
-                    <li><a asp-controller="Home" asp-action="Transfer" asp-route-id="@book.Id">Transfer</a></li>
-                    <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@book.Id">Remove</a></li>
+                    <li><a asp-controller="Admin" asp-action="Edit" asp-route-id="@book.Id">Edit</a></li>
+                    <li><a asp-controller="Admin" asp-action="Transfer" asp-route-id="@book.Id">Transfer</a></li>
+                    <li><a asp-controller="Admin" asp-action="Delete" asp-route-id="@book.Id">Remove</a></li>
                 }
             </ul>
         </div>
@@ -58,9 +58,9 @@
                 <li><a asp-controller="Home" asp-action="Details" asp-route-id="@book.Id">View</a></li>
                 @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@book.Id">Edit</a></li>
-                    <li><a asp-controller="Home" asp-action="Transfer" asp-route-id="@book.Id">Transfer</a></li>
-                    <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@book.Id">Remove</a></li>
+                    <li><a asp-controller="Admin" asp-action="Edit" asp-route-id="@book.Id">Edit</a></li>
+                    <li><a asp-controller="Admin" asp-action="Transfer" asp-route-id="@book.Id">Transfer</a></li>
+                    <li><a asp-controller="Admin" asp-action="Delete" asp-route-id="@book.Id">Remove</a></li>
                 }
             </ul>
         </div>

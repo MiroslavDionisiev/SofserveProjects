@@ -1,0 +1,40 @@
+﻿@model BookReturnViewModel
+
+@{ 
+    ViewBag.Title = "Return book";
+}
+
+<form asp-controller="Admin" asp-action="Return" method="post">
+    <div>
+        <label>Book Id:</label>
+        <div>
+            <input asp-for="@Model.BookId" placeholder="Book Id" />
+            <span asp-validation-for="@Model.BookId" class="text-danger"></span>
+        </div>
+        <label>User Id:</label>
+        <div>
+            <input asp-for="@Model.UserId" placeholder="User Id" />
+            <span asp-validation-for="@Model.UserId" class="text-danger"></span>
+        </div>
+        <label>First Name:</label>
+        <div>
+            <input asp-for="@Model.FirstName" placeholder="FirstName" />
+            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+        </div>
+        <label>Last Name:</label>
+        <div>
+            <input asp-for="@Model.LastName." placeholder="LastName" />
+            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger">
+
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Transfer</button>
+        </div>
+    </div>
+</form>
