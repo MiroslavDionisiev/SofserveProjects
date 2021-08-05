@@ -8937,11 +8937,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\VC2019 projects\\LibraryManagement\\LibraryManagement_Tests\\LibraryManagement_Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Miroslav\\Documents\\GitHub\\SofserveProjects\\LibraryManagement\\LibraryManagement_Tests\\LibraryManagement_Tests.csproj",
       "projectName": "LibraryManagement_Tests",
-      "projectPath": "E:\\VC2019 projects\\LibraryManagement\\LibraryManagement_Tests\\LibraryManagement_Tests.csproj",
+      "projectPath": "C:\\Users\\Miroslav\\Documents\\GitHub\\SofserveProjects\\LibraryManagement\\LibraryManagement_Tests\\LibraryManagement_Tests.csproj",
       "packagesPath": "C:\\Users\\Miroslav\\.nuget\\packages\\",
-      "outputPath": "E:\\VC2019 projects\\LibraryManagement\\LibraryManagement_Tests\\obj\\",
+      "outputPath": "C:\\Users\\Miroslav\\Documents\\GitHub\\SofserveProjects\\LibraryManagement\\LibraryManagement_Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Miroslav\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8958,8 +8958,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\VC2019 projects\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj": {
-              "projectPath": "E:\\VC2019 projects\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj"
+            "C:\\Users\\Miroslav\\Documents\\GitHub\\SofserveProjects\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj": {
+              "projectPath": "C:\\Users\\Miroslav\\Documents\\GitHub\\SofserveProjects\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj"
             }
           }
         }
