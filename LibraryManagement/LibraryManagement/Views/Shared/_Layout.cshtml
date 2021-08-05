@@ -37,12 +37,9 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="Return">Return book</a>
                             </li>
                         }
-                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Member"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="MyBooks">My books</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="MyBooks">My books</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @if (signInManager.IsSignedIn(User))
