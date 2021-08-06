@@ -42,9 +42,6 @@
             else
             {
                 <form asp-controller="User" asp-action="MyBooks" method="post">
-                    @*<input hidden asp-for="@Model.ToList()[index].BorrowedId" />
-                    <input hidden asp-for="@Model.ToList()[index].BookId" />
-                    <input hidden asp-for="@Model.ToList()[index].UsersId" />*@
                     <input type="hidden" value="@book.BorrowedId" name="borrowedId" />
                     <ul class="bookData colorEven">
                         <li>@_bookRepository.GetBook(book.BookId).Name</li>
@@ -72,9 +69,6 @@
             else
             {
                 <form asp-controller="User" asp-action="MyBooks" method="post">
-                    @*<input hidden asp-for="@Model.ToList()[index].BorrowedId" />
-                    <input hidden asp-for="@Model.ToList()[index].BookId" />
-                    <input hidden asp-for="@Model.ToList()[index].UsersId" />*@
                     <input type="hidden" value="@book.BorrowedId" name="borrowedId" />
                     <ul class="bookData colorOdd">
                         <li>@_bookRepository.GetBook(book.BookId).Name</li>

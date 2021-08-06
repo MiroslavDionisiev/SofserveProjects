@@ -7,6 +7,7 @@ using LibraryManagement.ViewModel;
 using Moq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace LibraryManagement_Tests
 {
@@ -54,11 +55,28 @@ namespace LibraryManagement_Tests
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal("Details", result.ViewName);
+            //Assert.Equal("Details", result.ViewName);
             var viewModel = controller.ViewData.Model as HomeDetailsViewModel;
             Assert.NotNull(viewModel);
             Assert.Equal(1, viewModel.Book.Id);
             Assert.Equal("Book details", viewModel.PageTitle);
+        }
+
+        [Fact]
+        public void Details_ReturnsAPageNotFoundViewResult_WhenAmIdOfNotExistingBookIsSelected()
+        {
+            // Arrange
+            var mockRepoBooks = new Mock<IBookRepository>();
+            var controller = new HomeController(mockRepoBooks.Object);
+            controller.ControllerContext = new ControllerContext();
+            controller.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            // Act
+            var result = controller.Details(1) as ViewResult;
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal("PageNotFound", result.ViewName);
         }
 
         private IEnumerable<Book> GetTestBooks()
