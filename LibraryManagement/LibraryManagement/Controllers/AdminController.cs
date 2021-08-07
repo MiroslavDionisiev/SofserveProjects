@@ -24,6 +24,10 @@ namespace LibraryManagement.Controllers
             this._deadlineRequestRepository = _deadlineRequestRepository;
             this.userManager = userManager;
         }
+
+        /// <summary>
+        /// checks if the passes userid, first name and last name are coherent
+        /// </summary>
         private async Task<bool> UserValidation(TransferViewModel transfer)
         {
             var user = await this.userManager.FindByIdAsync(transfer.UserId);
@@ -34,6 +38,9 @@ namespace LibraryManagement.Controllers
             return true;
         }
 
+        /// <summary>
+        /// redirect to view for creating a book view
+        /// </summary>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
@@ -41,6 +48,9 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// adds the data for a new book to the database
+        /// </summary>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Create(BookCreateViewModel bookCreated)
@@ -64,11 +74,22 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// redirect to view for edit book data view
+        /// </summary>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
+            // finds book by id
             Book book = this._bookRepository.GetBook(id);
+            // redirects to page not found if the id of the route doesn't match a books
+            if (book == null)
+            {
+                Response.StatusCode = 404;
+                return View("PageNotFound");
+            }
             BookEditViewModel bookEditViewModel = new BookEditViewModel
             {
                 OldNumberOfCopies = book.Copies,
@@ -77,6 +98,9 @@ namespace LibraryManagement.Controllers
             return View(bookEditViewModel);
         }
 
+        /// <summary>
+        /// applies changes made to book data and updates the database
+        /// </summary>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(BookEditViewModel book)
@@ -87,15 +111,19 @@ namespace LibraryManagement.Controllers
                 {
                     if (book.OldNumberOfCopies > book.CurrentBook.Copies)
                     {
+                        // distract from free copies the difference of Old overall number of copies and the new one, as there may be books to members
                         book.CurrentBook.FreeCopies -= book.OldNumberOfCopies - book.CurrentBook.Copies;
                         if (book.CurrentBook.FreeCopies < 0)
                         {
+                            // if free copies become negative assign 0
                             book.CurrentBook.FreeCopies = 0;
                         }
+                        // correct the number of overall copies if it is not in coherence with the number of borrowed copies 
                         book.CurrentBook.Copies = book.CurrentBook.FreeCopies + this._borrowedBooksRepository.GetNumberOfBorrowedBooks(book.CurrentBook.Id);
                     }
                     else
                     {
+                        // assign the difference between the new overall copies and the number of borrowed books  
                         book.CurrentBook.FreeCopies = book.CurrentBook.Copies - this._borrowedBooksRepository.GetNumberOfBorrowedBooks(book.CurrentBook.Id);
                     }
                 }
@@ -105,14 +133,24 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// redirects to view asking whether the admin wants to delete a book or not only if all the copies are at the library
+        /// </summary>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             Book book = this._bookRepository.GetBook(id);
-            return View(book);
+            if (book.FreeCopies == book.Copies)
+            {
+                return View(book);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// redirects in accordance to the clicked button
+        /// </summary>
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(int id)
@@ -129,6 +167,9 @@ namespace LibraryManagement.Controllers
             }
         }
 
+        /// <summary>
+        /// redirects to view with form for transfering the book only if there are free copies
+        /// </summary>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult Transfer(int id)
@@ -144,6 +185,9 @@ namespace LibraryManagement.Controllers
             }
         }
 
+        /// <summary>
+        /// upgrade the database according to the filled data
+        /// </summary>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Transfer(int id, TransferViewModel transfer)
@@ -154,10 +198,12 @@ namespace LibraryManagement.Controllers
 
                 if (isUserValid == true)
                 {
+                    // update the database storing the library books
                     Book book = this._bookRepository.GetBook(id);
                     book.FreeCopies--;
                     Book newBook = this._bookRepository.Update(book);
 
+                    // create a new borrowed book and add it to the database
                     BorrowedBooks borrowedBook = new BorrowedBooks
                     {
                         UsersId = transfer.UserId,
@@ -171,6 +217,7 @@ namespace LibraryManagement.Controllers
                 }
                 else
                 {
+                    // returns warning if the user data is not coherent
                     ModelState.AddModelError("Error", "Wrong personal data inputted");
                     return View();
                 }
@@ -178,6 +225,9 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// redirects to view with all pending user request for prolonging the terms for keeping a book
+        /// </summary>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult RequestHandler()
@@ -185,12 +235,16 @@ namespace LibraryManagement.Controllers
             return View(this._deadlineRequestRepository.GetPendingRequest());
         }
 
+        /// <summary>
+        /// processes the approved or declined requests
+        /// </summary>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult RequestHandler(IEnumerable<DeadlineRequest> requests)
         {
             foreach (DeadlineRequest request in requests)
             {
+                // for approved requests prolong the terms of keeping the book and update the database 
                 if (request.RequestStatus.ToString() == "Approved" && request.IsDeleted == false)
                 {
                     BorrowedBooks book = this._borrowedBooksRepository.GetBorrowedBook(request.BorrowedId);
@@ -203,6 +257,8 @@ namespace LibraryManagement.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// redirects to view with form to fill when lirary receives a book
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult Return()
@@ -210,6 +266,9 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// processes the filled data and updates the databases according the returned book
+        /// </summary>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Return(BookReturnViewModel bookReturnViewModel)
@@ -221,20 +280,24 @@ namespace LibraryManagement.Controllers
                 if (isUserValid == true)
                 {
                     Book book = this._bookRepository.GetBook(bookReturnViewModel.BookId);
+                    // checks if the right book id is inputted 
                     if (book == null)
                     {
                         ModelState.AddModelError("Error", "Wrong book id");
                         return View();
                     }
                     BorrowedBooks borrowedBook = this._borrowedBooksRepository.GetUserBorrowedBooks(bookReturnViewModel.UserId).ToList().Find(book => book.BookId == bookReturnViewModel.BookId);
+                    // checks if there is a borrowed book with certain id
                     if (borrowedBook == null)
                     {
                         ModelState.AddModelError("Error", "Data about borrowed book is not in coherence");
                         return View();
                     }
+                    // changes the data of the objects and updates the database
                     book.FreeCopies++;
                     borrowedBook.IsReturned = true;
                     Book newBook = this._bookRepository.Update(book);
+                    // sets pending requests for the borrowed book unprocessed when the book is returned to declined 
                     this._deadlineRequestRepository.RemovePendingRequestOfUserReturnedBook(borrowedBook.BorrowedId);
                     BorrowedBooks newBorrowedBook = this._borrowedBooksRepository.Update(borrowedBook);
 

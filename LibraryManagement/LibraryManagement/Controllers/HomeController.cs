@@ -35,6 +35,9 @@ namespace LibraryManagement.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        /// <summary>
+        /// Returns Details page of the book if such exist otherwise page not found
+        /// </summary>
         public IActionResult Details(int? id)
         {
             Book book = this._bookRepository.GetBook(id.Value);

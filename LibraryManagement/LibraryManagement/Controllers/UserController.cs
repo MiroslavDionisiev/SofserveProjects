@@ -21,6 +21,9 @@ namespace LibraryManagement.Controllers
             this.userManager = userManager;
         }
 
+        /// <summary>
+        /// Returns the list of users's borrowed books
+        /// </summary>
         [HttpGet]
         public IActionResult MyBooks()
         {
@@ -28,12 +31,16 @@ namespace LibraryManagement.Controllers
             return View(book);
         }
 
+        /// <summary>
+        /// Sends request for prolonging the terms for the book return
+        /// </summary>
         [HttpPost]
         public IActionResult MyBooks(int borrowedId)
         {
             if (ModelState.IsValid)
             {
                 BorrowedBooks bookRequested = this._borrowedBooksRepository.GetBorrowedBook(borrowedId);
+                // check if there is already sent pending request
                 if (this._deadlineRequestRepository.IsBookOfUserRequested(bookRequested.BorrowedId) == false)
                 {
                     DeadlineRequest request = new DeadlineRequest
