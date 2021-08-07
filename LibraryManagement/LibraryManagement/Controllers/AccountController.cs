@@ -47,7 +47,6 @@ namespace LibraryManagement.Controllers
 
                 if (result.Succeeded)
                 {
-                    await this.signInManager.SignInAsync(user, isPersistent: false); 
                     await this.userManager.AddToRoleAsync(user, model.Role.ToString().ToUpper());
 
                     return RedirectToAction("index", "home");
