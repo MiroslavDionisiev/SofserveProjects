@@ -8,6 +8,10 @@ namespace LibraryManagement.Models
     public enum Genres
     {
         Fiction,
-        Horror
+        Horror,
+        Mythology,
+        Historical,
+        Thriller,
+        Fantasy
     }
 }
