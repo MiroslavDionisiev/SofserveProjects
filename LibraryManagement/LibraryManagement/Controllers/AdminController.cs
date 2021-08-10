@@ -35,6 +35,7 @@ namespace LibraryManagement.Controllers
             {
                 return false;
             }
+
             return true;
         }
 
@@ -68,9 +69,11 @@ namespace LibraryManagement.Controllers
                     FreeCopies = bookCreated.Copies,
                     Copies = bookCreated.Copies
                 };
+
                 Book newBook = this._bookRepository.Add(book);
                 return RedirectToAction("Details", "Home", new { id = newBook.Id });
             }
+
             return View();
         }
 
@@ -95,6 +98,7 @@ namespace LibraryManagement.Controllers
                 OldNumberOfCopies = book.Copies,
                 CurrentBook = book
             };
+
             return View(bookEditViewModel);
         }
 
@@ -127,9 +131,11 @@ namespace LibraryManagement.Controllers
                         book.CurrentBook.FreeCopies = book.CurrentBook.Copies - this._borrowedBooksRepository.GetNumberOfBorrowedBooks(book.CurrentBook.Id);
                     }
                 }
+
                 Book newBook = this._bookRepository.Update(book.CurrentBook);
                 return RedirectToAction("Index", "Home");
             }
+
             return View();
         }
 
@@ -145,6 +151,7 @@ namespace LibraryManagement.Controllers
             {
                 return View(book);
             }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -222,6 +229,7 @@ namespace LibraryManagement.Controllers
                     return View();
                 }
             }
+
             return View();
         }
 
@@ -251,9 +259,11 @@ namespace LibraryManagement.Controllers
                     book.Date = book.Date.AddDays(30);
                     BorrowedBooks newBook = this._borrowedBooksRepository.Update(book);
                 }
+
                 request.IsDeleted = true;
                 this._deadlineRequestRepository.Update(request);
             }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -286,6 +296,7 @@ namespace LibraryManagement.Controllers
                         ModelState.AddModelError("Error", "Wrong book id");
                         return View();
                     }
+
                     BorrowedBooks borrowedBook = this._borrowedBooksRepository.GetUserBorrowedBooks(bookReturnViewModel.UserId).ToList().Find(book => book.BookId == bookReturnViewModel.BookId);
                     // checks if there is a borrowed book with certain id
                     if (borrowedBook == null)
@@ -293,6 +304,7 @@ namespace LibraryManagement.Controllers
                         ModelState.AddModelError("Error", "Data about borrowed book is not in coherence");
                         return View();
                     }
+
                     // changes the data of the objects and updates the database
                     book.FreeCopies++;
                     borrowedBook.IsReturned = true;
@@ -309,6 +321,7 @@ namespace LibraryManagement.Controllers
                     return View();
                 }
             }
+
             return View();
         }
     }

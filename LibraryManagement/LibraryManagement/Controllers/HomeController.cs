@@ -1,14 +1,8 @@
 ﻿using LibraryManagement.Models;
 using LibraryManagement.ViewModel;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Controllers
 {
@@ -51,6 +45,7 @@ namespace LibraryManagement.Controllers
                 Book = book,
                 PageTitle = "Book details"
             };
+
             return View(homeDetailsViewModel);
         }
     }
