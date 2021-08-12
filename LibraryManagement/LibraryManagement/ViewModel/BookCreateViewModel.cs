@@ -19,8 +19,10 @@ namespace LibraryManagement.ViewModel
         [MaxLength(512, ErrorMessage = "Author's name cannot exede 512 characters")]
         public string Description { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Only positive numbers allowed")]
         public int Published { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Only positive numbers allowed")]
         public int Copies { get; set; }
     }
 }
